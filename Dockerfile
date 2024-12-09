@@ -9,4 +9,4 @@ RUN chmod +x /docker-entrypoint.d/monitor.sh
 RUN mkdir /usr/share/nginx/files
 RUN chmod 777 /usr/share/nginx/files
 RUN apk add libreoffice
-RUN apk add inotify-tools
+RUN apk add inotify-tools file
