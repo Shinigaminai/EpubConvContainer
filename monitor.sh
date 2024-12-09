@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 
 file_modified() {
     TIMESTAMP=$(date)
@@ -8,8 +8,7 @@ file_modified() {
 file_created() {
     TIMESTAMP=$(date)
     echo "[$TIMESTAMP]: The file $1$2 was created" >>monitor_log
-    if [[ $2 == =~ \.odw$ ]]
-    then
+    if [[ $2 == =~ (\.odt|\.doc|\.docx)$ ]]; then
         libreoffice --headless --convert-to epub $1$2
     fi
 }
