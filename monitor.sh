@@ -11,9 +11,15 @@ file_created() {
     TIMESTAMP=$(date)
     FILETYPE=$(file --mime-type -b $1$2)
     echo "[$TIMESTAMP]: The file $1$2 of type $FILETYPE was created" >>$LOGFILE
-    if $FILETYPE | grep -Eq 'application/vnd.oasis.opendocument.text'; then
+    case $FILETYPE in
+    'application/vnd.oasis.opendocument.text' | 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' | 'application/msword' | 'application/rtf')
         create_epub "$1" "$2"
-    fi
+        ;;
+    'application/epub+zip') ;;
+    *)
+        echo "Not supported filetype $FILETYPE" >>$LOGFILE
+        ;;
+    esac
 }
 
 create_epub() {
