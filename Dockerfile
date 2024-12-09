@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 # COPY static-html-directory /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY monitor.sh /docker-entrypoint.d/monitor.sh
 RUN chmod +x /docker-entrypoint.d/monitor.sh
 RUN mkdir /usr/share/nginx/files
