@@ -34,7 +34,7 @@
     <script>
         const upload = (file) => {
             console.log("uploading file " + file.name);
-            let endpoint = window.location.origin + "/upload/" + file.name;
+            let endpoint = "upload/" + file.name;
             fetch(endpoint, { // Your POST endpoint
                 method: 'PUT',
                 headers: {
@@ -46,11 +46,15 @@
             }).then(
                 response => response.json() // if the response is a JSON object
             ).then(
-                success => console.log(success) // Handle the success response object
-                document.getElementById("result-banner").innerText = "Upload succesfull";
+                success => {
+                    console.log(success) // Handle the success response object
+                    document.getElementById("result-banner").innerText = "Upload succesfull";
+                }
             ).catch(
-                error => console.log(error) // Handle the error response object
-                document.getElementById("result-banner").innerText = "Upload failed";
+                error => {
+                    console.log(error) // Handle the error response object
+                    document.getElementById("result-banner").innerText = "Upload failed";
+                }
             );
         };
 
