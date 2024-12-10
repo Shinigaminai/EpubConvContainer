@@ -27,8 +27,8 @@ create_epub() {
     mv "${2%.*}.epub" /usr/share/nginx/files/
 }
 
-echo "Setting up upload folder monitoring"
-echo "Monitoring started" >$LOGFILE
+echo "[$(date)] Setting up upload folder monitoring"
+echo "[$(date)] Monitoring started" >$LOGFILE
 inotifywait -q -m -e modify,create,moved_to /usr/share/nginx/files | while read DIRECTORY EVENT FILE; do
     case $EVENT in
     MODIFY)
